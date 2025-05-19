@@ -1,6 +1,7 @@
 const chatForm = document.getElementById("chat-form");
 const chatbox = document.getElementById("chatbox");
 const userInput = document.getElementById("user-input");
+const toggleThemeBtn = document.getElementById("toggle-theme");
 
 chatForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -10,9 +11,20 @@ chatForm.addEventListener("submit", async (e) => {
   addMessage("user", input);
 
   const reply = await generatePlan(input);
-  addMessage("bot", reply);
+  if(reply) addMessage("bot", reply);
 
   userInput.value = "";
+});
+
+toggleThemeBtn.addEventListener("click", () => {
+  const body = document.body;
+  if (body.classList.contains("light")) {
+    body.classList.replace("light", "dark");
+    toggleThemeBtn.innerText = "Light Mode";
+  } else {
+    body.classList.replace("dark", "light");
+    toggleThemeBtn.innerText = "Dark Mode";
+  }
 });
 
 function addMessage(sender, text) {
@@ -41,6 +53,6 @@ async function generatePlan(input) {
     const data = await response.json();
     return data.choices[0].message.content;
   } catch (error) {
-    return "AI is taking a break, try again later";
+    return "";
   }
 }
