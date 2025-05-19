@@ -6,22 +6,25 @@
   <title>PlanGen AI</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="container">
-    <h1>PlanGen AI 🧠</h1>
+<body class="light">
+  <header>
+    <h1>PlanGen AI</h1>
+    <button id="toggle-theme">Dark Mode</button>
+  </header>
+  <main>
     <div id="chatbox"></div>
     <form id="chat-form">
       <input
         type="text"
         id="user-input"
-        placeholder="Type your plan request..."
+        placeholder="Ask me anything..."
         autocomplete="off"
-        required
+        autofocus
       />
       <button type="submit">Send</button>
     </form>
-  </div>
+  </main>
+
   <script src="script.js"></script>
 </body>
 </html>
-
